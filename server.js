@@ -26,6 +26,14 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.get('/test-uploads', (req, res) => {
+    res.json({
+        uploadsPath: path.join(__dirname, 'uploads'),
+        exists: require('fs').existsSync(path.join(__dirname, 'uploads'))
+    });
+});
+
+
 app.use('/api/public', require('./routes/public'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
