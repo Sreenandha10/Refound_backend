@@ -27,9 +27,13 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/test-uploads', (req, res) => {
+    const fs = require('fs');
+    const dir = path.join(__dirname, 'uploads');
+
     res.json({
-        uploadsPath: path.join(__dirname, 'uploads'),
-        exists: require('fs').existsSync(path.join(__dirname, 'uploads'))
+        uploadsPath: dir,
+        exists: fs.existsSync(dir),
+        files: fs.existsSync(dir) ? fs.readdirSync(dir) : []
     });
 });
 
