@@ -20,7 +20,7 @@ const geoFrom = (b) => {
   const lng = parseFloat(b.lng);
   return Number.isFinite(lat) && Number.isFinite(lng) ? { type: 'Point', coordinates: [lng, lat] } : undefined;
 };
-const imagePaths = (files) => (files || []).map((f) => `/uploads/${f.filename}`);
+const imagePaths = (files) => (files || []).map((f) => f.path);
 const isOwner = (item, user) => String(item.user._id || item.user) === String(user._id);
 
 async function validate(b) {

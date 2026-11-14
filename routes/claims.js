@@ -45,7 +45,7 @@ router.post('/', protect, upload.array('proofImages', 4), asyncHandler(async (re
     claimer: req.user._id,
     finder: found.user,
     proofDetails: proofDetails.trim(),
-    proofImages: (req.files || []).map((f) => `/uploads/${f.filename}`),
+    proofImages: (req.files || []).map((f) => f.path),
     answers: given,
   });
 
